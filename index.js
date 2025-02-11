@@ -19,4 +19,22 @@ fs.stat(directoryPath, (err, stats) => {
     console.log(`${directoryName} is not a directory`);
   }
   console.log(`Directory ${directoryName} exists!`);
+
+  fs.readdir(directoryPath, (err, files) => {
+    if (err) {
+      console.log(`Error Reading Directory`);
+      process.exit(1);
+    }
+
+    const markdownFiles = files.filter((file) => file.endsWith(".md"));
+
+    if (markdownFiles.length === 0) {
+      console.log(`No Markdown Files Found`);
+    } else {
+      console.log(`Found Markdown Files`);
+      markdownFiles.forEach((file) => {
+        console.log(file);
+      });
+    }
+  });
 });
