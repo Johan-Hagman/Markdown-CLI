@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/jolor2024/node-project/issues"
   },
-  "homepage": "https://github.com/jolor2024/node-project#readme"
+  "homepage": "https://github.com/jolor2024/node-project#readme",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "fs-extra": "^11.3.0",
+    "gray-matter": "^4.0.3"
+  }
 }
