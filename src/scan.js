@@ -1,5 +1,5 @@
-import fs from "fs/promises";
-import path from "path";
+import { promises as fs } from 'fs';
+import path from 'path';
 
 /**
  * Recursively scans a directory for Markdown files.
@@ -20,7 +20,7 @@ export async function scanDirectory(dir) {
         // Recursively scan subdirectories
         const subDirFiles = await scanDirectory(filePath);
         markdownFiles = markdownFiles.concat(subDirFiles);
-      } else if (file.endsWith(".md")) {
+      } else if (file.endsWith('.md')) {
         markdownFiles.push(filePath);
       }
     }
