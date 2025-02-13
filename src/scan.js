@@ -1,56 +1,33 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 
 /**
  * Recursively scans a directory for Markdown files.
  * @param {string} dir - The directory path to scan.
+ * @returns {Promise<string[]>} - A promise that resolves to an array of Markdown file paths.
  */
-export function scanDirectory(dir) {
-  fs.stat(dir, (err, stats) => {
-    if (err) {
-      console.log(`Error: ${err.message}`);
-      process.exit(1);
-    }
 
-    if (!stats.isDirectory()) {
-      console.log(`${dir} is not a directory`);
-      process.exit(1);
-    }
+export async function scanDirectory(dir) {
+  try {
+    const files = await fs.readdir(dir);
+    let markdownFiles = [];
 
-    console.log(`Scanning directory: ${dir}`);
-
-    // Start recursive search
-    findMarkdownFiles(dir);
-  });
-}
-
-/**
- * Helper function that finds Markdown files within a directory and its subdirectories.
- * @param {string} dir - The directory path to search.
- */
-function findMarkdownFiles(dir) {
-  fs.readdir(dir, (err, files) => {
-    if (err) {
-      console.log(`Error reading directory ${dir}: ${err.message}`);
-      return;
-    }
-
-    files.forEach((file) => {
+    for (const file of files) {
       const filePath = path.join(dir, file);
+      const stats = await fs.stat(filePath);
 
-      fs.stat(filePath, (err, stats) => {
-        if (err) {
-          console.log(`Error checking stats for ${filePath}: ${err.message}`);
-          return;
-        }
+      if (stats.isDirectory()) {
+        // Recursively scan subdirectories
+        const subDirFiles = await scanDirectory(filePath);
+        markdownFiles = markdownFiles.concat(subDirFiles);
+      } else if (file.endsWith(".md")) {
+        markdownFiles.push(filePath);
+      }
+    }
 
-        if (stats.isDirectory()) {
-          findMarkdownFiles(filePath);
-        } else if (stats.isFile() && file.endsWith(".md")) {
-          console.log(`Markdown file found: ${filePath}`);
-          // Future integration: Call analyze.js to process content
-        }
-      });
-    });
-  });
+    return markdownFiles;
+  } catch (err) {
+    console.error(`Error reading directory ${dir}: ${err.message}`);
+    return [];
+  }
 }
