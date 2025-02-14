@@ -1,33 +1,32 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 /**
  * Recursively scans a directory for Markdown files.
  * @param {string} dir - The directory path to scan.
- * @returns {Promise<string[]>} - A promise that resolves to an array of Markdown file paths.
+ * @returns {Promise<string[]>} - A list of found Markdown files.
  */
-
 export async function scanDirectory(dir) {
+  let mdFiles = [];
+
   try {
-    const files = await fs.readdir(dir);
-    let markdownFiles = [];
+    const files = fs.readdirSync(dir);
+    console.log(`Scanning directory: ${dir}`); // Debugging
 
     for (const file of files) {
       const filePath = path.join(dir, file);
-      const stats = await fs.stat(filePath);
+      const stats = fs.statSync(filePath);
 
       if (stats.isDirectory()) {
-        // Recursively scan subdirectories
-        const subDirFiles = await scanDirectory(filePath);
-        markdownFiles = markdownFiles.concat(subDirFiles);
-      } else if (file.endsWith('.md')) {
-        markdownFiles.push(filePath);
+        mdFiles = mdFiles.concat(await scanDirectory(filePath));
+      } else if (stats.isFile() && file.endsWith(".md")) {
+        console.log(`Markdown file found: ${filePath}`); // Debugging
+        mdFiles.push(filePath);
       }
     }
-
-    return markdownFiles;
-  } catch (err) {
-    console.error(`Error reading directory ${dir}: ${err.message}`);
-    return [];
+  } catch (error) {
+    console.error(`Error scanning directory: ${error.message}`);
   }
+
+  return mdFiles;
 }

@@ -1,7 +1,7 @@
 import path from "path";
 import { scanDirectory } from "./src/scan.js";
 import { analyzeMarkdownFiles } from "./src/analyze.js";
-import { saveToFileAndExtractTables } from "./src/output.js"; //Updated import
+import { saveToFileAndExtractTables } from "./src/output.js";
 
 const directoryName = process.argv[2];
 
@@ -22,7 +22,7 @@ const directoryPath = path.resolve(directoryName);
       process.exit(0);
     }
 
-    // Analyze the Markdown files
+    // Merge Markdown files
     const mergedContent = analyzeMarkdownFiles(markdownFiles);
 
     // Save merged content and extract tables
