@@ -43,6 +43,10 @@ export function extractTablesFromFile(inputFile, outputFile) {
     const tableRegex =
       /(?:^|\n)(\s*\|.+?\|)\n(\s*\|[-:| ]+\|)\n((?:\s*\|.+?\|\n)*)/g;
 
+    // (For Windows)
+    // const tableRegex =
+    //   /(?:^|\r?\n)(\s|.+?|)\r?\n(\s|[-:| ]+|)\r?\n((?:\s|.+?|\r?\n))/g;
+
     // Extract all matches
     const matches = [...content.matchAll(tableRegex)].map((match) => match[0]);
 
