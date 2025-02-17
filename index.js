@@ -1,7 +1,7 @@
 import path from "path";
 import { scanDirectory } from "./src/scan.js";
 import { analyzeMarkdownFiles } from "./src/analyze.js";
-import { saveToFileAndExtractTables } from "./src/output.js";
+import fs from "fs";
 
 const directoryName = process.argv[2];
 
@@ -24,10 +24,8 @@ const directoryPath = path.resolve(directoryName);
 
     // Merge Markdown files
     const mergedContent = analyzeMarkdownFiles(markdownFiles);
-
-    // Save merged content and extract tables
-    const mergedFile = path.join(process.cwd(), "merged.md");
-    saveToFileAndExtractTables(mergedFile, mergedContent);
+    // Save merged content
+     fs.writeFileSync("merged.md", mergedContent, "utf8");
   } catch (error) {
     console.error(`Error: ${error.message}`);
   }
