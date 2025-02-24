@@ -3,6 +3,7 @@ import { scanDirectory } from "./src/scan.js";
 import { analyzeMarkdownFiles } from "./src/analyze.js";
 import fs from "fs";
 
+// Scan the input for the folder name
 const directoryName = process.argv[2];
 
 if (!directoryName) {
@@ -22,10 +23,11 @@ const directoryPath = path.resolve(directoryName);
       process.exit(0);
     }
 
-    // Merge Markdown files
+    // Analyze files, extract tables and merged content to variable
     const mergedContent = analyzeMarkdownFiles(markdownFiles);
-    // Save merged content
-     fs.writeFileSync("merged.md", mergedContent, "utf8");
+
+    // Save merged content to file
+    fs.writeFileSync("merged.md", mergedContent, "utf8");
   } catch (error) {
     console.error(`Error: ${error.message}`);
   }
