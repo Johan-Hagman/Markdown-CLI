@@ -33,11 +33,12 @@ export function analyzeMarkdownFiles(files) {
         mergedContent += matches.join("\n\n").trim();
       }
       mergedContent += "\n\n";
-      console.log(mergedContent);
+      // console.log("Merge Succesful");
     } catch (error) {
       console.error(`Error reading file ${file}: ${error.message}`);
     }
   });
+  console.log("Merge Succesful");
 
   return mergedContent;
 }
