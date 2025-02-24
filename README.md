@@ -1,14 +1,12 @@
 # Markdown-CLI
 
 ## Project Overview
-This CLI tool scans a given directory for Markdown (`.md`) files, extracts their metadata (front matter), merges their content, and saves the result into a `.md` file. The tool is built with **Node.js** and utilizes `gray-matter` to process Markdown metadata.
+This CLI tool scans a given directory for Markdown (`.md`) files, extracts their tables and paths, merges their content, and saves the result into a `.md` file. The tool is built with **Node.js**
 
 ## Features
-- Recursively scans a directory for `.md` files  
-- Extracts **front matter metadata** (e.g., title, author, date, tags)  
-- Merges all Markdown content into a single `.md` file  
-- Keeps Markdown body unchanged  
-- Supports async file handling for better performance  
+- Recursively scans a directory for `.md` files    
+- Merges all Markdown content into a single `.md` file
+- Extracting only table content and displaying the file path
 - Error handling for missing directories or invalid files  
 
 ## Installation
