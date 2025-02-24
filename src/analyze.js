@@ -18,21 +18,22 @@ export function analyzeMarkdownFiles(files) {
       console.log(`\n--- Reading file: ${file} ---`); // Debugging
       const content = fs.readFileSync(file, "utf8");
 
-       // (For Windows)
-     const tableRegex =  /(?:^|\r?\n)(\s*\|.+?\|)\r?\n(\s*\|[-:| ]+\|)\r?\n((?:\s*\|.+?\|\r?\n)*)/g;
+      // (For Windows & Mac)
+      const tableRegex =
+        /(?:^|\r?\n)(\s*\|.+?\|)\r?\n(\s*\|[-:| ]+\|)\r?\n((?:\s*\|.+?\|\r?\n)*)/g;
 
-     // Extract all matches
-     const matches = [...content.matchAll(tableRegex)].map((match) => match[0]);
-    
-     mergedContent += file + "\n";
+      // Extract all matches
+      const matches = [...content.matchAll(tableRegex)].map(
+        (match) => match[0]
+      );
 
-     if (matches.length > 0) {
-      mergedContent += matches.join("\n\n").trim();
-     
-     }
-     mergedContent += "\n\n";
-     console.log(mergedContent);
-     
+      mergedContent += file + "\n\n";
+
+      if (matches.length > 0) {
+        mergedContent += matches.join("\n\n").trim();
+      }
+      mergedContent += "\n\n";
+      console.log(mergedContent);
     } catch (error) {
       console.error(`Error reading file ${file}: ${error.message}`);
     }
