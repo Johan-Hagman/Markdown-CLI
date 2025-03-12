@@ -1,27 +1,45 @@
 {
   "type": "module",
-  "name": "project",
+  "name": "markdown-cli",
   "version": "1.0.0",
-  "description": "Node project",
+  "description": "CLI tool for scanning and extracting tables from Markdown files",
   "main": "index.js",
+  "bin": {
+    "markdown-cli": "./bin/cli.js"
+  },
   "scripts": {
+    "start": "node bin/cli.js analyze",
+    "dev": "nodemon bin/cli.js analyze",
+    "lint": "eslint .",
+    "format": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jolor2024/node-project.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "cli",
+    "markdown",
+    "tables",
+    "extract",
+    "automation"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jolor2024/node-project/issues"
+    "url": "https://github.com/jolor2024/node-project"
   },
   "homepage": "https://github.com/jolor2024/node-project#readme",
   "dependencies": {
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "fs-extra": "^11.3.0",
-    "gray-matter": "^4.0.3"
+    "ora": "^8.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.22.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.5.3"
   }
 }
