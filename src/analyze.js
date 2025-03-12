@@ -1,4 +1,5 @@
 import fs from "fs";
+import ora from "ora";
 
 /**
  * Reads and merges Markdown files while preserving tables.
@@ -7,37 +8,42 @@ import fs from "fs";
  */
 export function analyzeMarkdownFiles(files) {
   let mergedContent = "";
+  const spinner = ora(`📖 Reading ${files.length} Markdown files...`).start();
 
   if (files.length === 0) {
-    console.log("No Markdown files found.");
+    spinner.warn("No Markdown files found.");
     return "No tables found."; // Prevents empty output
   }
 
-  files.forEach((file) => {
+  files.forEach((file, index) => {
     try {
-      console.log(`\n--- Reading file: ${file} ---`); // Debugging
+      const fileSpinner = ora(
+        `📄 Processing file ${index + 1}/${files.length}: ${file}`
+      ).start();
       const content = fs.readFileSync(file, "utf8");
 
-      // (For Windows & Mac)
+      // Regex for Markdown tables
       const tableRegex =
         /(?:^|\r?\n)(\s*\|.+?\|)\r?\n(\s*\|[-:| ]+\|)\r?\n((?:\s*\|.+?\|\r?\n)*)/g;
-
-      // Extract all matches
       const matches = [...content.matchAll(tableRegex)].map(
         (match) => match[0]
       );
 
-      mergedContent += file + "\n\n";
+      mergedContent += `\n\n### ${file} ###\n\n`;
 
       if (matches.length > 0) {
         mergedContent += matches.join("\n\n").trim();
+        fileSpinner.succeed(`Extracted tables from ${file}`);
+      } else {
+        mergedContent += "(No tables found in this file)";
+        fileSpinner.warn(`No tables found in ${file}`);
       }
       mergedContent += "\n\n";
     } catch (error) {
       console.error(`Error reading file ${file}: ${error.message}`);
     }
   });
-  console.log("Merge Succesful");
 
+  spinner.succeed("Merge Successful");
   return mergedContent;
 }

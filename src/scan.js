@@ -1,5 +1,6 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
+import ora from "ora";
 
 /**
  * Recursively scans a directory for Markdown files.
@@ -7,25 +8,26 @@ import path from "path";
  * @returns {Promise<string[]>} - A list of found Markdown files.
  */
 export async function scanDirectory(dir) {
+  const spinner = ora(`📂 Scanning directory: ${dir}`).start();
   let mdFiles = [];
 
   try {
-    const files = fs.readdirSync(dir);
-    console.log(`Scanning directory: ${dir}`); // Debugging
+    const files = await fs.readdir(dir, { withFileTypes: true });
 
-    for (const file of files) {
-      const filePath = path.join(dir, file);
-      const stats = fs.statSync(filePath);
-
-      if (stats.isDirectory()) {
-        mdFiles = mdFiles.concat(await scanDirectory(filePath));
-      } else if (stats.isFile() && file.endsWith(".md")) {
-        console.log(`Markdown file found: ${filePath}`); // Debugging
+    const tasks = files.map(async (file) => {
+      const filePath = path.join(dir, file.name);
+      if (file.isDirectory()) {
+        const subFiles = await scanDirectory(filePath);
+        mdFiles = mdFiles.concat(subFiles);
+      } else if (file.isFile() && file.name.endsWith(".md")) {
         mdFiles.push(filePath);
       }
-    }
+    });
+
+    await Promise.all(tasks);
+    spinner.succeed(`Found ${mdFiles.length} Markdown files!`);
   } catch (error) {
-    console.error(`Error scanning directory: ${error.message}`);
+    spinner.fail(`Error scanning directory: ${error.message}`);
   }
 
   return mdFiles;
