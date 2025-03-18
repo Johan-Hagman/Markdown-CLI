@@ -4,15 +4,16 @@ import ora from "ora";
 /**
  * Reads and merges Markdown files while preserving tables.
  * @param {string[]} files - Array of Markdown file paths.
- * @returns {string} - Merged Markdown content.
+ * @returns {{ mergedContent: string, filesWithTables: number }} - Merged content and count of files with tables.
  */
 export function analyzeMarkdownFiles(files) {
   let mergedContent = "";
+  let filesWithTables = 0; // **Lägger till räknare**
   const spinner = ora(`📖 Reading ${files.length} Markdown files...`).start();
 
   if (files.length === 0) {
     spinner.warn("No Markdown files found.");
-    return "No tables found."; // Prevents empty output
+    return { mergedContent: "No tables found.", filesWithTables: 0 }; // Prevents empty output
   }
 
   files.forEach((file, index) => {
@@ -33,6 +34,7 @@ export function analyzeMarkdownFiles(files) {
 
       if (matches.length > 0) {
         mergedContent += matches.join("\n\n").trim();
+        filesWithTables++; // **Räkna endast filer där tabeller hittades**
         fileSpinner.succeed(`Extracted tables from ${file}`);
       } else {
         mergedContent += "(No tables found in this file)";
@@ -43,7 +45,6 @@ export function analyzeMarkdownFiles(files) {
       console.error(`Error reading file ${file}: ${error.message}`);
     }
   });
-
   spinner.succeed("Merge Successful");
-  return mergedContent;
+  return { mergedContent, filesWithTables }; // **Returnera nu också antalet filer med tabeller**
 }
