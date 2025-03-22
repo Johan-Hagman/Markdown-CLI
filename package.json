@@ -8,15 +8,15 @@
     "markdown-cli": "./bin/cli.js"
   },
   "scripts": {
-    "start": "node bin/cli.js analyze",
-    "dev": "nodemon bin/cli.js analyze",
+    "start": "node bin/cli.js ",
+    "dev": "nodemon bin/cli.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jolor2024/node-project.git"
+    "url": "git+https://github.com/Johan-Hagman/Markdown-CLI"
   },
   "keywords": [
     "cli",
@@ -25,13 +25,14 @@
     "extract",
     "automation"
   ],
-  "author": "Your Name",
+  "author": "Johan Hagman",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jolor2024/node-project"
+    "url": "https://github.com/Johan-Hagman/Markdown-CLI"
   },
-  "homepage": "https://github.com/jolor2024/node-project#readme",
+  "homepage": "https://github.com/Johan-Hagman/Markdown-CLI#readme",
   "dependencies": {
+    "boxen": "^8.0.1",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "fs-extra": "^11.3.0",
