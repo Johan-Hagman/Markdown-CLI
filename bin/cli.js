@@ -7,7 +7,7 @@ import { processMarkdownFiles } from "../src/process.js";
 
 const program = new Command(); //Is this needed?
 
-//show guid eif no argument is given
+//show guid if no argument is given
 const showGuide = () => {
   console.log(
     boxen(
