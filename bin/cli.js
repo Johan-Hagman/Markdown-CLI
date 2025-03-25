@@ -1,11 +1,8 @@
 #!/usr/bin/env node
-import { Command } from "commander";
 import chalk from "chalk";
 import boxen from "boxen";
 import fs from "fs";
 import { processMarkdownFiles } from "../src/process.js";
-
-const program = new Command(); //Is this needed?
 
 //show guid if no argument is given
 const showGuide = () => {
