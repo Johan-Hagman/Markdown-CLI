@@ -19,12 +19,12 @@ _A powerful CLI tool for scanning, extracting, and merging Markdown files_
 
 ## 📥 Installation
 
-To install the CLI, you can either install it globally via npm (after publishing) or clone the repository manually.
+To install the CLI, you can either install it globally via npm or clone the repository manually.
 
-### 1️⃣ Install globally via npm (after publishing)
+### 1️⃣ Install globally via npm
 
 ```sh
-npm install -g markdown-cli
+npm install -g markdown-cli-tool
 ```
 
 ### 2️⃣ Clone the repository manually
@@ -74,6 +74,18 @@ npm start documents myOutput.md
 
 ## 🛠️ Development & Contributing
 
+🚧 Tests are not yet implemented in this version, but will be added in a future release to ensure robustness and reliability.
+
+📌 Planned tests include:
+
+Valid Markdown files with tables
+
+Markdown files without tables
+
+Handling of non-Markdown files
+
+Directory not found or empty
+
 💡 **Want to contribute?** Fork the repo, open issues, or submit pull requests.
 
 ### Run locally for development:
@@ -89,12 +101,6 @@ Now, you can use the CLI as a system-wide command:
 
 ```sh
 markdown-cli analyze test-folder
-```
-
-### Run tests:
-
-```sh
-npm run test
 ```
 
 ## 📜 License
