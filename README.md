@@ -74,6 +74,18 @@ npm start documents myOutput.md
 
 ## 🛠️ Development & Contributing
 
+🚧 Tests are not yet implemented in this version, but will be added in a future release to ensure robustness and reliability.
+
+📌 Planned tests include:
+
+Valid Markdown files with tables
+
+Markdown files without tables
+
+Handling of non-Markdown files
+
+Directory not found or empty
+
 💡 **Want to contribute?** Fork the repo, open issues, or submit pull requests.
 
 ### Run locally for development:
