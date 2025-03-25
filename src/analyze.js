@@ -34,7 +34,7 @@ export function analyzeMarkdownFiles(files) {
 
       if (matches.length > 0) {
         mergedContent += matches.join("\n\n").trim();
-        filesWithTables++; // **Räkna endast filer där tabeller hittades**
+        filesWithTables++; // **Count only files where tables are found **
         fileSpinner.succeed(`Extracted tables from ${file}`);
       } else {
         mergedContent += "(No tables found in this file)";
@@ -46,5 +46,5 @@ export function analyzeMarkdownFiles(files) {
     }
   });
   spinner.succeed("Merge Successful");
-  return { mergedContent, filesWithTables }; // **Returnera nu också antalet filer med tabeller**
+  return { mergedContent, filesWithTables }; // **Return the amount of files with tables**
 }
