@@ -40,13 +40,13 @@ npm install
 Once installed, run the CLI tool with:
 
 ```sh
-markdown-cli analyze <directory>
+markdown-cli <directory> [output-file]
 ```
 
 🔹 **Example:**
 
 ```sh
-markdown-cli analyze documents
+markdown-cli documents
 ```
 
 This scans the `documents/` folder, extracts tables, and merges them into `merged.md`.
@@ -54,7 +54,7 @@ This scans the `documents/` folder, extracts tables, and merges them into `merge
 To specify a custom output filename, run:
 
 ```sh
-markdown-cli analyze documents output.md
+markdown-cli documents output.md
 ```
 
 This saves the merged tables into `output.md`.
@@ -65,26 +65,22 @@ If running via npm scripts, use:
 npm start documents myOutput.md
 ```
 
-## ⚙️ CLI Options
+## ⚙️ Parameters
 
-| Command                        | Description                        |
+| Argument                       | Description                        |
 | ------------------------------ | ---------------------------------- |
-| `analyze <directory>`          | Scans and extracts Markdown tables |
-| `analyze <directory> [output]` | Saves output to a custom filename  |
+| `<directory>`                  | The folder to scan for .md files   |
+| `<directory> [output]`         | Saves output to a custom filename  |
 
 ## 🛠️ Development & Contributing
 
 🚧 Tests are not yet implemented in this version, but will be added in a future release to ensure robustness and reliability.
 
 📌 Planned tests include:
-
-Valid Markdown files with tables
-
-Markdown files without tables
-
-Handling of non-Markdown files
-
-Directory not found or empty
+- Valid Markdown files with tables  
+- Markdown files without tables  
+- Handling of non-Markdown files  
+- Nonexistent or empty directories
 
 💡 **Want to contribute?** Fork the repo, open issues, or submit pull requests.
 
@@ -97,10 +93,10 @@ npm install
 npm link   # Links CLI tool globally for local testing
 ```
 
-Now, you can use the CLI as a system-wide command:
+You can now use it like any global CLI:
 
 ```sh
-markdown-cli analyze test-folder
+markdown-cli test-folder
 ```
 
 ## 📜 License
