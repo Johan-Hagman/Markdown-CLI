@@ -91,12 +91,6 @@ Now, you can use the CLI as a system-wide command:
 markdown-cli analyze test-folder
 ```
 
-### Run tests:
-
-```sh
-npm run test
-```
-
 ## 📜 License
 
 This project is licensed under the **MIT License**. Want to contribute? Fork the repo and submit a PR! 🚀
