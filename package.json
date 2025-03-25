@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "markdown-cli-tool",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI tool for scanning and extracting tables from Markdown files",
   "main": "index.js",
   "bin": {
