@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "markdown-cli-tool",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI tool for scanning and extracting tables from Markdown files",
   "main": "index.js",
   "bin": {
@@ -11,8 +11,7 @@
     "start": "node bin/cli.js",
     "dev": "nodemon bin/cli.js",
     "lint": "eslint .",
-    "format": "prettier --write .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -41,5 +40,12 @@
     "eslint": "^9.22.0",
     "nodemon": "^3.0.2",
     "prettier": "^3.5.3"
-  }
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ]
 }
