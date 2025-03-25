@@ -19,12 +19,12 @@ _A powerful CLI tool for scanning, extracting, and merging Markdown files_
 
 ## 📥 Installation
 
-To install the CLI, you can either install it globally via npm (after publishing) or clone the repository manually.
+To install the CLI, you can either install it globally via npm or clone the repository manually.
 
-### 1️⃣ Install globally via npm (after publishing)
+### 1️⃣ Install globally via npm
 
 ```sh
-npm install -g markdown-cli
+npm install -g markdown-cli-tool
 ```
 
 ### 2️⃣ Clone the repository manually
