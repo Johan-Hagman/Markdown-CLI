@@ -8,7 +8,7 @@ import ora from "ora";
  */
 export function analyzeMarkdownFiles(files) {
   let mergedContent = "";
-  let filesWithTables = 0; // **Lägger till räknare**
+  let filesWithTables = 0; // **Adds counter**
   const spinner = ora(`📖 Reading ${files.length} Markdown files...`).start();
 
   if (files.length === 0) {

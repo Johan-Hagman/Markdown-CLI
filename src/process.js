@@ -29,14 +29,14 @@ export async function processMarkdownFiles(directoryName, outputFileName) {
     console.log(chalk.blue("🔍 Analyzing Markdown files...\n"));
     await new Promise((res) => setTimeout(res, 1500));
 
-    // **NYTT:** Analysera Markdown-filer och få räkningen
+    // Analyze Markdown files and get the count
     const { mergedContent, filesWithTables } =
       analyzeMarkdownFiles(markdownFiles);
 
-    // Skriv ut extraherat innehåll till output-filen
+    // Write extracted content to the output file
     fs.writeFileSync(outputFileName, mergedContent, "utf8");
 
-    // **Skapa summering och skriv in i output-filen**
+    // Create summary and append it to the output file
     const summary = `
 Summary:
 Processed ${markdownFiles.length} Markdown files

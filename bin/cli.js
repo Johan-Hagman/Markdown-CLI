@@ -4,7 +4,7 @@ import boxen from "boxen";
 import fs from "fs";
 import { processMarkdownFiles } from "../src/process.js";
 
-//show guid if no argument is given
+//show guide if no argument is given
 const showGuide = () => {
   console.log(
     boxen(
